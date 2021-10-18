@@ -1,0 +1,21 @@
+ANALOG
+Ch 1 Scale 2.00V/, Pos 3.10000V, Coup DC, BW Limit Off, Inv Off, Imp 1M Ohm
+     Probe 1.0000000 : 1, Skew 0.0s
+Ch 3 Scale 5mV/, Pos 2.000mV, Coup DC, BW Limit Off, Inv Off, Imp 1M Ohm
+     Probe 1.0000000 : 1, Skew 0.0s
+Ch 4 Scale 5mV/, Pos 950uV, Coup DC, BW Limit Off, Inv Off, Imp 1M Ohm
+     Probe 1.0000000 : 1, Skew 0.0s
+
+MATH
+Ch3-Ch4, Scale 5mV/, Offset 0.0V
+
+TRIGGER
+Sweep Mode Normal, Coup DC, Noise Rej Off, HF Rej Off, Holdoff 40.0ns
+Mode Pulse Width, Source Ch 1, Polarity Positive, Qualifier t < 1.000000ms, Level 1.17500V
+
+HORIZONTAL
+Mode Normal, Ref Center, Main Scale 1.000ms/, Main Delay 3.000000000ms
+
+ACQUISITION
+Mode Averaging, # Avgs 64, Realtime On, Vectors On, Persistence Off
+
