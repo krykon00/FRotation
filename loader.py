@@ -6,6 +6,24 @@ import h5py
 from abc import ABC, abstractmethod
 
 
+class H5DataError(Exception):
+    '''Error to rise when H5 file is without valid data.
+    
+        It will check for message aka file name that is invalid.
+    '''
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = None
+            
+    def __str__(self):
+        if self.message:
+            return f"H5 error. File {self.message} cotains no valid data."
+        else:
+            return "H5 file contains no valid data."
+
+
 class DataExtractor(ABC):
 
     file_path: str
@@ -107,6 +125,10 @@ for file in get_file_list(path_to_data, "h5"):
     break
 
 print("----> H5 FIle <-------")
-csv_path = os.path.join(path_to_data, first_file)
-mydf = FromH5Extractor(csv_path)
-print(mydf.extract_data())
+h5_path = os.path.join(path_to_data, first_file)
+mydf = FromH5Extractor(h5_path)
+try:
+    print(mydf.extract_data())
+except ValueError:
+    print(H5DataError(first_file))
+    pass
